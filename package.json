@@ -1,0 +1,11 @@
+{
+  "name": "UrQANodeServer",
+  "private": true,
+  "version": "0.0.1",
+  "description": "UrQA Node Server ",
+  "author": "UrQA",
+  "dependencies": {
+    "node-rest-client": "",
+    "node-rsa":""
+  }
+}
