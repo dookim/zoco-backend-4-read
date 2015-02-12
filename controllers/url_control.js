@@ -3,7 +3,7 @@
  */
 'use strict';
 //var gk = require('../common');
-var Sequelize = require('../node_module/sequelize');
+var Sequelize = require('../node_modules/sequelize');
 //이거 노드에서 가져와야 할듯(js 파일에서)
 var sequelize = new Sequelize('zoco', 'root', '@stanly@urqa', {
     // host 지정
@@ -14,15 +14,13 @@ var sequelize = new Sequelize('zoco', 'root', '@stanly@urqa', {
 
 
 
-
 exports.query_book = function(req, res) {
     //console.log("exception Data");
-    var book_query = req.query.book_query;
+    var book_query = req.query.query;
 
-    sequelize.query('SELECT * FROM book WHERE MATCH (title,author) AGAINST ('+book_query+');', null, { raw: true }).success(function(data){
-        console.log("hoho");
+    sequelize.query('SELECT * FROM book WHERE MATCH (title,author) AGAINST ("'+book_query+'");', null, { raw: true }).success(function(data){
+	res.send(data);
     })
-
 
 
 

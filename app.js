@@ -4,7 +4,7 @@ process.env.TZ = 'Asia/Seoul';
 
 // express
 var express = require('express');
-var encryptHandler = require('./middleware/encrypt');
+//var encryptHandler = require('./middleware/encrypt');
 
 // app
 var app = express();
@@ -13,7 +13,7 @@ var app = express();
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
 	app.use(express.compress());
-	app.use(encryptHandler());
+	//app.use(encryptHandler());
 });
 	
 // router
