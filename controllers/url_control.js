@@ -17,14 +17,31 @@ var sequelize = new Sequelize('zoco', 'root', '@stanly@urqa', {
 exports.query_book = function(req, res) {
     //console.log("exception Data");
     var book_query = req.query.query;
-
-    sequelize.query('SELECT * FROM book WHERE MATCH (title,author) AGAINST ("'+book_query+'");', null, { raw: true }).success(function(data){
+    var offset = req.query.offset;
+    if(book_query == null || offset == null) {
+	res.send("please set book_query and offset");
+	return;
+    }
+//u should do join
+    sequelize.query('SELECT * FROM book WHERE MATCH (title,author) AGAINST ("'+book_query+'") limit 7 offset ' + offset + ";", null, { raw: true }).success(function(data){
 	res.send(data);
+    })
+
+}
+
+exports.query_image = function(req,res) {
+
+    var isbn = req.query.isbn;
+    if(isbn == null) {
+	res.send("please set isbn");
+	return;
+    }
+
+    sequelize.query("SELECT * FROM bookimage WHERE isbn="+isbn+";", null, { raw: true }).success(function(data){
+        res.send(data);
     })
 
 
 
 }
-
-
 
