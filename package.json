@@ -6,6 +6,10 @@
   "author": "UrQA",
   "dependencies": {
     "node-rest-client": "",
-    "node-rsa":""
+    "node-rsa":"",
+    "body-parser": "1.7.0",
+    "ejs": "1.0.0",
+    "express-session": "1.0.3",
+    "express": "4.8.7"
   }
 }

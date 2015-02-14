@@ -4,17 +4,20 @@ process.env.TZ = 'Asia/Seoul';
 
 // express
 var express = require('express');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var compress = require('compression');
 //var encryptHandler = require('./middleware/encrypt');
 
 // app
 var app = express();
-	app.configure(function() {
-	app.locals.pretty = true;
-	app.use(express.bodyParser());
-	app.use(express.cookieParser());
-	app.use(express.compress());
+app.locals.pretty = true;
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(compress());
+app.use(session({secret: 'zoco'}));
 	//app.use(encryptHandler());
-});
 	
 // router
 var router = require('./routes');

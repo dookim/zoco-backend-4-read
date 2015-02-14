@@ -12,6 +12,12 @@ var sequelize = new Sequelize('zoco', 'root', '@stanly@urqa', {
     port: 3306
 })
 
+exports.login = function(req, res) {
+    //console.log("exception Data");
+    var email  = req.body.email;
+    req.session.email = email;
+    res.send("login ok");
+}
 
 
 exports.query_book = function(req, res) {
@@ -45,3 +51,8 @@ exports.query_image = function(req,res) {
 
 }
 
+exports.test = function(req,res) {
+    var email = req.session.email;
+    res.send("email : " + email);
+
+}
