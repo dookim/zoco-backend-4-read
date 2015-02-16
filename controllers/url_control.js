@@ -11,6 +11,7 @@ var sequelize = new Sequelize('zoco', 'root', '@stanly@urqa', {
     // port 지정
     port: 3306
 })
+var utf8 = require('utf8');
 
 exports.login = function(req, res) {
     //console.log("exception Data");
@@ -23,6 +24,8 @@ exports.login = function(req, res) {
 exports.query_book = function(req, res) {
     //console.log("exception Data");
     var book_query = req.query.query;
+
+
     var offset = req.query.offset;
     if(book_query == null || offset == null) {
 	res.send("please set book_query and offset");
@@ -43,8 +46,8 @@ exports.query_image = function(req,res) {
 	return;
     }
 
-    sequelize.query("SELECT * FROM bookimage WHERE isbn="+isbn+";", null, { raw: true }).success(function(data){
-        res.send(data);
+    sequelize.query("SELECT bookimage FROM bookimage WHERE isbn='"+isbn+"';", null, { raw: true }).success(function(data){
+        res.send(data[0].bookimage);
     })
 
 
